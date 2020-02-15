@@ -53,8 +53,26 @@ private fun encode(view: View) {
     var numberToEncode: Int = Integer.parseInt(editTextValue)
 
     // Convert integer to binary
-    var binaryNumber = Integer.toBinaryString(numberToEncode)
+    var binaryNumber = convertDecimalToBinary(numberToEncode)
 
     // Display the new value in the text view.
-    displayAnswer.text = binaryNumber
+    displayAnswer.text = binaryNumber.toString()
+}
+
+private fun convertDecimalToBinary(decimalNumber: Int): Long {
+
+    var n = decimalNumber
+    var binaryNumber: Long = 0
+    var remainder: Int
+    var i = 1
+
+    while (n != 0) {
+
+        remainder = n % 2
+        n /= 2
+        binaryNumber += (remainder * i).toLong()
+        i *= 10
+    }
+
+    return binaryNumber
 }
